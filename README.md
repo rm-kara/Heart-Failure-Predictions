@@ -69,7 +69,8 @@ To install the packages with pip, download [requirements.txt](https://github.com
 * Logistic Regression: 0.722 
 
 ## Best Performance
-* Tuned SVM Accuracy: 0.759  
+* **Tuned SVM Accuracy: 0.759**  
+### Confusion Matrix
 ![alt text](https://github.com/rm-kara/Heart-Failure-Predictions/blob/master/img/Confusion%20Matrix.png "Confusion Matrix")
 
 ## Resources
