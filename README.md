@@ -12,19 +12,19 @@
     - [Installing Requirements](#installing-requirements)
 * [EDA Highlights](#eda-highlights)
 * [Tested Models](#tested-models)
-* [Model Performance](#model-performance)
+* [Best Performance](#best-performance)
 * [Resources](#resources)
 
 ## Project Overview
 This data set contains 12 features related to whether a patient will suffer from **heart failure**.
-It's crucial to be aware that there are two target columns: **time** and **DEATH_EVENT**
-**DEATH_EVENT** describes whether a patient died or was censored. Censoring means the scientist lost contact with the patient.
-The **time** column indicates when the patient died or was censored.
+It's crucial to be aware that there are two target columns: **time** and **DEATH_EVENT**  
+**DEATH_EVENT** describes whether a patient died or was censored. Censoring means the scientist lost contact with the patient.  
+The **time** column indicates when the patient died or was censored.  
 Since we don't have the information when a patient will die or get censored we cannot use **time** as a feature.
 
 The data was cleaned using **Pandas** and **Numpy**, visualizations were developed with **Seaborn** and **Matplotlib**.  
 Transformational steps such as encoding categorical- and numerical variables were implemented by using Scikit-learn's **Pipeline, StandardScaler, OneHotEncoder and ColumnTransformer** modules.  
-Imblearn's **SMOTE (synthetic minority oversampling technique)** was used to solve the imbalanced data distribution.
+Imblearn's **SMOTE (synthetic minority oversampling technique)** was used to solve the imbalanced data distribution.  
 Different models were then compared and their performance evaluated using **Stratified K-Fold cross-validation**. Finally, the best model was selected and optimized using **GridSearchCV**.
 
 ## Getting Started
@@ -40,47 +40,46 @@ Different models were then compared and their performance evaluated using **Stra
 * xgboost 1.2.0
 
 ### Installing Requirements
-To create a new anaconda environment, download [conda_requirements.txt](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/requirements/conda_requirements.txt) and enter the following command:  
+To create a new anaconda environment, download [conda_requirements.txt](https://github.com/rm-kara/Heart-Failure-Predictions/tree/master/requirements/conda_requirements.txt) and enter the following command:  
 ```
 <conda create --name <env> --file conda_requirements.txt>
 ```
-To install the packages with pip, download [requirements.txt](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/requirements/requirements.txt) and enter the following command:  
+To install the packages with pip, download [requirements.txt](https://github.com/rm-kara/Heart-Failure-Predictions/tree/master/requirements/requirements.txt) and enter the following command:  
 ```
 <pip install -r requirements.txt>
 ```
 ## EDA Highlights
-**Average charges of the different age groups:** 
-![alt text](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/img/charts/Charges-Age-Groups.png "Charges Age Groups")
+**Age distribution by gender:** 
+![alt text](https://github.com/rm-kara/Heart-Failure-Predictions/blob/master/img/Age-Dist-Sex.png "Age Distribution Gender")
 ***
-**Charges for Smoker and Non smokers:**
-![alt text](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/img/charts/Smoker-vs-NonSmoker.png "Smokers vs. Non Smokers")
+**Deaths by gender and age:**
+![alt text](https://github.com/rm-kara/Heart-Failure-Predictions/blob/master/img/Death-Dist-Sex.png "Death by Age and Gender")
 ***
-**Distribution BMI Categories and their corresponding charges:**
-![alt text](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/img/charts/BMI-Distribution%26Charges.png "BMI Categories & Charges")
-
+**Different factors and their influence on age:**
+![alt text](https://github.com/rm-kara/Heart-Failure-Predictions/blob/master/img/Age-Influencer%3F.png "Factors on Age")
+***
+**Death frequency and elapsed time:**
+![alt text](https://github.com/rm-kara/Heart-Failure-Predictions/blob/master/img/Death-Details.png "Deaths Frequency")
 
 ## Tested Models
-* Lasso
-* ElasticNet
-* Linear Regression
-* KNeighborsRegressor
-* GradientBoostingRegressor
-* DecisionTreeRegressor
-* RandomForestRegressor  
+* XGBClassifier: 0.718
+* Gradient Boosting: 0.733
+* KNeighbors: 0.681
+* SVM: 0.735
+* Logistic Regression: 0.722 
 
-## Model Performance
-**Overview of the R2-scores of the different models:**
-![alt text](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/img/charts/Model%20Scores.png "R2 scores")
-***
-**Results of the final model with tuned Hyperparameters:**
-* Best Model's average MAE: 2486.436
-* Best Model's average R2: 0.859  
-![alt text](https://github.com/rm-kara/Medical-Insurance-Costs/blob/master/img/charts/Model-Predictions.png "Model Predictions")
+## Best Performance
+* Tuned SVM Accuracy: 0.759  
+![alt text](https://github.com/rm-kara/Heart-Failure-Predictions/blob/master/img/Confusion%20Matrix.png "Confusion Matrix")
 
-Link:
-* https://www.kaggle.com/andrewmvd/heart-failure-clinical-data
-* https://towardsdatascience.com/hyperparameter-tuning-c5619e7e6624
-* https://machinelearningmastery.com/hyperparameters-for-classification-machine-learning-algorithms/
-* https://stackoverflow.com/questions/45394527/do-i-need-to-split-data-when-using-gridsearchcv
-* https://stackoverflow.com/questions/50245684/using-smote-with-gridsearchcv-in-scikit-learn
-* https://stats.stackexchange.com/questions/363312/normalization-standardization-should-one-do-this-before-oversampling-undersampl
+## Resources
+* Link to Data: 
+    - [Kaggle Dataset](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data)
+* GridSearchCV: 
+    - [Splitting Data](https://stackoverflow.com/questions/45394527/do-i-need-to-split-data-when-using-gridsearchcv)
+* SMOTE: 
+    - [SMOTE With GridSearch](https://stackoverflow.com/questions/50245684/using-smote-with-gridsearchcv-in-scikit-learn)
+    - [Standardization With SMOTE](https://stats.stackexchange.com/questions/363312/normalization-standardization-should-one-do-this-before-oversampling-undersampl)
+* Hyperparameters GradientBoosting:
+    - [Tune Hyperparameters](https://machinelearningmastery.com/hyperparameters-for-classification-machine-learning-algorithms/)
+    - [More on tuning Hyperparameters](https://towardsdatascience.com/hyperparameter-tuning-c5619e7e6624)
